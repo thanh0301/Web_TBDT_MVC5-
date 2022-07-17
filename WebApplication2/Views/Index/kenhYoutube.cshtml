@@ -1,0 +1,13 @@
+﻿@using WebApplication2.Models;
+@model  IEnumerable<WebApplication2.Models.Video>
+
+<div class="yt-title mb-10">
+    <h3>Kênh Youtube</h3>
+</div>
+@foreach (Video video in Model)
+{
+    <div class="yt">
+        <img src="@Url.Content("~/img/Anhvideo/" + video.LinkAnh)" alt="Alternate Text" />
+        <a href="@video.Link">@video.TieuDe</a>
+    </div>
+}

@@ -1,0 +1,224 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+          crossorigin="anonymous" />
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600&display=swap" rel="stylesheet">
+
+
+    <link href="~/Content/menuMB.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="header">
+        <div class="top-nav">
+            <div class="container">
+                <div class="top-bar">
+                    <ul class="social">
+                        <li><a href=""><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                        <li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+
+                    </ul>
+                    @*  click de ra form dang nhap *@
+                <div class="user">
+                    @Html.Action("loginPartial", "User")
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="inner-nav">
+            <div class="container">
+                <div class="inner-nav">
+                    @* nút menu *@
+                    <div class="ham">
+                        <span class="line"></span>
+                        <span class="line line2"></span>
+                        <span class="line"></span>
+
+                    </div>
+                    <a href="@Url.Action("Index", "Index")" class="logo">
+                        <img height="70px" width="70px" src="@Url.Content("~/img/DNK_Icon.png") " />
+                    </a>
+                    
+                    @Html.Action("timKiem", "Index")
+
+                    <div class="header-btn">
+                        @Html.Action("GiohangPartical", "Giohang")
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="mega-menu">
+            <div class="container">
+                <div class="mega-menu">
+                    <div class="mega-title"> <i class="fa fa-bars" aria-hidden="true"></i>Danh mục sản phẩm</div>
+                    <ul class="shop-if">
+                        <li><a href="@Url.Action("Video","Index", new { page = 1 })">Video</a></li>
+                        <li><a href="#">Hướng dẫn mua hàng</a></li>
+                        <li><a href="@Url.Action("ChinhSachVanChuyen","Index")">Chính sách vận chuyển</a></li>
+                        <li><a href="@Url.Action("ChinhSachBaoHanh","Index")">Chính sách bảo hành </a></li>
+                        <li><a href="@Url.Action("Contact","Index")">Liên hệ</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        @RenderBody()
+    </div>
+    <div class="footer" style="margin-top:100px; padding-bottom:50px;">
+        <div class="container">
+            <div class="ft-top mb-10">
+                <div class="ft-top-left">
+                    <p>Địa chỉ: 475A Điện Biên Phủ, Thành phố Hồ Chí Minh  </p>
+                    <p>Số điện thoại :028 5445 2222 </p>
+                    <p>Địa chỉ email : truyenthong@hutech.edu.vn</p>
+                </div>
+                <div class="ft-top-right">
+                    <ul>
+                        <li><a href="https://www.facebook.com/hutechuniversity" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-git" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.youtube.com/channel/UClWYcK8eeRxFTNYR4QI0L_g" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="ft-bot">
+                <div class="row">
+                    <div class="col-lg-6 col-10">
+                        <div class="map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.125120810274!2d106.71230301432061!3d10.801727892304358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528a459cb43ab%3A0x6c3d29d370b52a7e!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2jhu4cgVFAuSENNIC0gSFVURUNI!5e0!3m2!1svi!2s!4v1649514296293!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="backToTop">
+        <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </div>
+    @* menu trên mobile gom partialview *@
+    @Html.Action("ChudeonMB", "Index")
+
+
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/app.js"></script>
+    <script>
+        if (window.innerWidth > 760) {
+            const texts = document.querySelectorAll(".product a.namePro");
+
+            [...texts].forEach(item => item.addEventListener("mouseenter", function (e) {
+
+                const title = e.target.textContent;
+                const tooltipDiv = document.createElement("div");
+                tooltipDiv.className = "tooltip-text";
+                tooltipDiv.textContent = title;
+                document.body.appendChild(tooltipDiv);
+                const cords = event.target.getBoundingClientRect();
+                const { top, left, width } = cords;
+                const tooltipHeight = tooltipDiv.offsetHeight;
+                const triangleHeight = 20;
+                tooltipDiv.style.left = `${left - width / 4}px`;
+                tooltipDiv.style.top = `${top - tooltipHeight - triangleHeight}px`;
+            }));
+            [...texts].forEach(item => item.addEventListener("mouseleave", function (e) {
+                const tooltip = document.querySelector(".tooltip-text");
+                if (!tooltip) return;
+                tooltip.parentNode.removeChild(tooltip);
+            }));
+
+
+
+            //lightbox
+            const imgs = document.querySelectorAll('.detail-imgs img');
+            [...imgs].forEach(item => item.addEventListener('click', function (e) {
+                const image = e.target.getAttribute("src");
+                const template = `
+   <div class="lightbox">
+     <div class="lightbox-content">
+       <i class="fa fa-angle-left lightbox-prev"></i>
+       <img
+         src="${image}"
+         alt=""
+         class="lightbox-image"
+       />
+       <i class="fa fa-angle-right lightbox-next"></i>
+     </div>
+   </div>`;
+                document.body.insertAdjacentHTML("beforeend", template);
+            }))
+            let index = 0;
+            document.addEventListener("click", function (e) {
+                const lightImage = document.querySelector(".lightbox-image");
+                if (!lightImage) return;
+                let lightSrc = lightImage.getAttribute("src");
+                index = [...imgs].findIndex(
+                    (item) => item.getAttribute("src") === lightSrc
+                );
+                if (e.target.matches(".lightbox")) {
+                    e.target.parentNode.removeChild(e.target);
+                } else if (e.target.matches(".lightbox-next")) {
+                    index = index + 1;
+                    if (index > imgs.length - 1) {
+                        index = 0;
+                    }
+                    displayLightImage(lightImage, index);
+                } else if (e.target.matches(".lightbox-prev")) {
+                    index = index - 1;
+                    if (index < 0) {
+                        index = imgs.length - 1;
+                    }
+                    displayLightImage(lightImage, index);
+                }
+            });
+
+            function displayLightImage(lightImage, index) {
+                const newSrc = [...imgs][index].getAttribute("src");
+                lightImage.setAttribute("src", newSrc);
+            }
+
+
+
+        } else {
+            window.addEventListener('scroll', function (e) {
+                const menu = document.querySelector('.menu-mb');
+                const ham = document.querySelector('.ham');
+                if (menu.classList.contains("active")) {
+                    menu.classList.remove('active');
+                    ham.classList.remove('active-ham');
+                }
+
+            })
+        }
+          
+        
+    </script>
+    
+</body>
+</html>

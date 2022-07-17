@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Xacnhandonhang";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container">
+    <h2 class="text-center">Đơn hàng của quý khách đã được chúng tôi ghi nhận. Chúng tôi sẽ liên hệ quý khách trong thời gian sớm nhất và giao hàng đúng hẹn</h2>
+    <p class="text-left">
+        @Html.ActionLink("VỀ TRANG CHỦ", "Index", "Index")
+    </p>`;
+
+</div>
+
+<script>
+    const container = document.querySelector('.container');
+
+    const sucess = `<div class="success-checkmark">
+  <div class="check-icon">
+    <span class="icon-line line-tip"></span>
+    <span class="icon-line line-long"></span>
+    <div class="icon-circle"></div>
+    <div class="icon-fix"></div>
+  </div>
+</div>`;
+    const content = `<h2 class="text-center">Đơn hàng của quý khách đã được chúng tôi ghi nhận. Chúng tôi sẽ liên hệ quý khách trong thời gian sớm nhất và giao hàng đúng hẹn</h2>
+    <p class="text-left">
+        @Html.ActionLink("VỀ TRANG CHỦ", "Index", "BookStore")
+    </p>`;
+
+
+</script>

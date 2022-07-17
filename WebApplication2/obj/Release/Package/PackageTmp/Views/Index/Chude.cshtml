@@ -1,0 +1,33 @@
+﻿@using WebApplication2.MultipleModelInOneView
+@using WebApplication2.Models
+@model ModelDanhMucs
+
+<ul class="list">
+
+    @foreach (var item in Model.DANHMUCs)
+
+    {
+
+        <li>
+
+            <i class="fa fa-gamepad" aria-hidden="true"></i><a href="@Url.Action("ListSPDanhMuc", "Index" , new { id = item.MaDM , page = 1})"><b>@item.TenDanhMuc</b> </a>
+
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+            @*  danh muc con *@
+
+        <ul class="sub-list">
+            @foreach (LOAISANPHAM lOAISANPHAM in Model.LOAISANPHAMs)
+            {
+                if (lOAISANPHAM.MaDM == item.MaDM)
+                {
+                    <li><a href="@Url.Action("ListSPLoai", "Index" , new { id = lOAISANPHAM.MaLoai , page = 1})">@lOAISANPHAM.TenLoai</a></li>
+                }
+            }
+
+        </ul>
+
+        </li>
+
+    }
+
+</ul>

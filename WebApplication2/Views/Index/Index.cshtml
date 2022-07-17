@@ -1,0 +1,229 @@
+﻿@using WebApplication2.Models;
+@model  IEnumerable<WebApplication2.Models.SANPHAM>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div id="main">
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-lg-2">
+                <div class="content-left">
+                    @* menu trên desktop partialViiew*@
+                    @Html.Action("Chude", "Index")
+
+                </div>
+            </div>
+            @* slider *@
+            <div class="col-lg-10">
+                <div class="content-right">
+                    <img src="~/img/ANHBIA3-1-1400x700.jpg" />
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    @* hot product *@
+    <div class="container">
+
+        <div class="title hotpro">
+            <h3>Sản phẩm mới</h3>
+        </div>
+        <div class="hotpro">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="products">
+                        <div class="row">
+
+
+                            @for (int i = 0; i < Model.Count(); i++)
+                            {
+                                if (i == 0)
+                                {
+                                    <div class="col-lg-6">
+                                        <div class="product">
+                                            @foreach (ANHPHU anhphu in ViewData["anhbia"] as IList<ANHPHU>)
+                                            {
+                                                if (anhphu.MaSP == @Model.ElementAt(i).MaSP)
+                                                {
+                                                    <div class="p-img bigSize">
+                                                        <img src="@Url.Content("~/img/Anhphu/" + anhphu.LinkAnh)" alt="Alternate Text" />
+                                                    </div>
+                                                }
+                                            }
+
+                                            @*  a là đường dẫn qua trang chi tiết *@
+                                            <a href="@Url.Action("Details", "Index" , new { id = @Model.ElementAt(i).MaSP})" class="namePro">@Model.ElementAt(i).TenSP</a>
+                                            <h3 class="price">@String.Format("{0:0,0}", @Model.ElementAt(i).Giaban) VNĐ</h3>
+                                            <a href="@Url.Action("ThemGiohang", "GioHang", new { @iMaSP =  @Model.ElementAt(i).MaSP, @strURL = Request.Url.ToString() })" class="buy"> <strong>Thêm vào giỏ hàng</strong> </a>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-lg-6">
+                                        <div class="row mb-10">
+                                            <div class="col-lg-6">
+                                                <div class="product">
+                                                    @foreach (ANHPHU anhphu in ViewData["anhbia"] as IList<ANHPHU>)
+                                                    {
+                                                        if (anhphu.MaSP == @Model.ElementAt(i).MaSP)
+                                                        {
+                                                            <div class="p-img">
+                                                                <img src="@Url.Content("~/img/Anhphu/" + anhphu.LinkAnh)" alt="Alternate Text" />
+
+                                                            </div>
+                                                        }
+                                                    }
+                                                    <a href="@Url.Action("Details", "Index" , new { id = @Model.ElementAt(i).MaSP})"class="namePro">@Model.ElementAt(i).TenSP</a>
+                                                    <h3 class="price">@String.Format("{0:0,0}", @Model.ElementAt(i).Giaban) VNĐ</h3>
+                                                    <a href="@Url.Action("ThemGiohang", "GioHang", new { @iMaSP =  @Model.ElementAt(i).MaSP, @strURL = Request.Url.ToString() })" class="buy"> <strong>Thêm vào giỏ hàng</strong> </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="product">
+                                                    @foreach (ANHPHU anhphu in ViewData["anhbia"] as IList<ANHPHU>)
+                                                    {
+                                                        if (anhphu.MaSP == @Model.ElementAt(i + 1).MaSP)
+                                                        {
+
+                                                            <div class="p-img">
+                                                                <img src="@Url.Content("~/img/Anhphu/" + anhphu.LinkAnh)" alt="Alternate Text" />
+
+                                                            </div>
+                                                        }
+                                                    }
+                                                    <a href="@Url.Action("Details", "Index" , new { id = @Model.ElementAt(i+1).MaSP})"class="namePro">@Model.ElementAt(i + 1).TenSP</a>
+                                                    <h3 class="price">@String.Format("{0:0,0}", @Model.ElementAt(i + 1).Giaban) VNĐ</h3>
+                                                    <a href="@Url.Action("ThemGiohang", "GioHang", new { @iMaSP =  @Model.ElementAt(i+1).MaSP, @strURL = Request.Url.ToString() })" class="buy"> <strong>Thêm vào giỏ hàng</strong> </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-10">
+                                            <div class="col-lg-6">
+                                                <div class="product">
+                                                    @foreach (ANHPHU anhphu in ViewData["anhbia"] as IList<ANHPHU>)
+                                                    {
+                                                        if (anhphu.MaSP == @Model.ElementAt(i + 2).MaSP)
+                                                        {
+                                                            <div class="p-img">
+                                                                <img src="@Url.Content("~/img/Anhphu/" + anhphu.LinkAnh)" alt="Alternate Text" />
+
+                                                            </div>
+                                                        }
+                                                    }
+                                                    <a href="@Url.Action("Details", "Index" , new { id = @Model.ElementAt(i+2).MaSP})"class="namePro">@Model.ElementAt(i + 2).TenSP</a>
+                                                    <h3 class="price">@String.Format("{0:0,0}", @Model.ElementAt(i + 2).Giaban) VNĐ</h3>
+                                                    <a href="@Url.Action("ThemGiohang", "GioHang", new { @iMaSP =  @Model.ElementAt(i+2).MaSP, @strURL = Request.Url.ToString() })" class="buy"> <strong>Thêm vào giỏ hàng</strong> </a>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="product">
+                                                    @foreach (ANHPHU anhphu in ViewData["anhbia"] as IList<ANHPHU>)
+                                                    {
+                                                        if (anhphu.MaSP == @Model.ElementAt(i + 3).MaSP)
+                                                        {
+                                                            <div class="p-img">
+                                                                <img src="@Url.Content("~/img/Anhphu/" + anhphu.LinkAnh)" alt="Alternate Text" />
+
+                                                            </div>
+                                                        }
+                                                    }
+                                                    <a href="@Url.Action("Details", "Index" , new { id = @Model.ElementAt(i+3).MaSP})"class="namePro">@Model.ElementAt(i + 3).TenSP</a>
+                                                    <h3 class="price">@String.Format("{0:0,0}", @Model.ElementAt(i + 3).Giaban) VNĐ</h3>
+                                                    <a href="@Url.Action("ThemGiohang", "GioHang", new { @iMaSP =  @Model.ElementAt(i+3).MaSP, @strURL = Request.Url.ToString() })" class="buy"> <strong>Thêm vào giỏ hàng</strong> </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    i += 3;
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+                @* kenh yt *@
+
+            <div class="col-lg-2">
+                @Html.Action("kenhYoutube", "Index", new { count = 4 })
+            </div>
+            </div>
+        </div>
+    </div>
+    @* lot chuot *@
+    <div class="mouse-pad">
+        <div class="container">
+            @* tiêu đề danh mục  *@
+            <div class="title">
+                <h3>CHUỘT GAMING</h3>
+            </div>
+            @* danh sách sản phẩm trên cùng hàng *@
+
+            @* từng sản phẩm *@
+            <div class="row">
+                @Html.Action("subProduct", "Index", new { id = 2, count = 8 })
+            </div>
+
+        </div>
+    </div>
+    @* gaming gear *@
+    <div class="mouse-pad">
+        <div class="container">
+            @* tiêu đề danh mục  *@
+            <div class="title">
+                <h3>GHẾ GAMING</h3>
+            </div>
+            @* danh sách sản phẩm trên cùng hàng *@
+
+            @* từng sản phẩm *@
+            <div class="row">
+                @Html.Action("subProduct", "Index", new { id = 14, count = 8 })
+            </div>
+
+        </div>
+    </div>
+    @* mô hình *@
+    <div class="mouse-pad">
+        <div class="container">
+            @* tiêu đề danh mục  *@
+            <div class="title">
+                <h3>MÔ HÌNH ANIME</h3>
+            </div>
+            @* danh sách sản phẩm trên cùng hàng *@
+
+            @* từng sản phẩm *@
+            <div class="row">
+                @Html.Action("subProduct", "Index", new { id = 9 , count = 8})
+            </div>
+
+        </div>
+    </div>
+    @* Bàn ghế gaming *@
+    <div class="mouse-pad">
+        <div class="container">
+            @* tiêu đề danh mục  *@
+            <div class="title">
+                <h3>QUẠT CASE, FAN CASE</h3>
+            </div>
+            @* danh sách sản phẩm trên cùng hàng *@
+
+            @* từng sản phẩm *@
+            <div class="row">
+                @Html.Action("subProduct", "Index", new { id = 16, count = 8 })
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script>
+    //Tooltip
+    
+</script>

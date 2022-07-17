@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+          crossorigin="anonymous" />
+    <link href="~/Content/menuMB.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container" ">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle boxa" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("Admin", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                @Html.Action("timKiem", "Admin")
+            </div>
+
+        </div>
+    </div>
+    <div class="box">
+        <a href="@Url.Action("Sanpham", "Admin")"><i class="fa fa-address-card-o" aria-hidden="true"></i> Quản lý sản phẩm</a>
+        <a href="@Url.Action("Themmoisp", "Admin")"><i class="fa fa-address-card-o" aria-hidden="true"></i> Tạo mới sản phẩm</a>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12">
+                <div>
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+   
+
+
+
+
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/app.js"></script>
+    <script>
+        const box = document.querySelector('.box');
+        const toggle = document.querySelector('.boxa');
+        toggle.addEventListener("click", function (e) {
+
+            box.classList.toggle('active');
+        }
+        )
+       
+    </script>
+</body>
+</html>

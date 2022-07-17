@@ -1,0 +1,27 @@
+﻿@model IEnumerable < WebApplication2.Models.SANPHAM>
+@using WebApplication2.Models
+
+@*  tair sản phẩm từ csdl lên *@
+<div class="product-grid-layout sub-P">
+
+    @foreach (var sanpham in Model)
+    {
+        <div class="product">
+                @foreach (ANHPHU anhphu in ViewData["anhbia"] as IList<ANHPHU>)
+                {
+                    if (anhphu.MaSP == sanpham.MaSP)
+                    {
+                        <div class="p-img">
+                            <img src="@Url.Content("~/img/Anhphu/" + anhphu.LinkAnh)" alt="Alternate Text" />
+                        </div>
+                        break;
+                    }
+                }
+            <a href="@Url.Action("Details", "Index" , new { id = sanpham.MaSP})"class="namePro">@sanpham.TenSP</a>
+            <h3 class="price">@String.Format("{0:0,0}", sanpham.Giaban) VNĐ</h3>
+            <a href="@Url.Action("ThemGiohang", "GioHang", new { @iMaSP =  sanpham.MaSP, @strURL = Request.Url.ToString() })" class="buy"> <strong>Thêm vào giỏ hàng</strong> </a>
+        </div>
+    }
+
+</div>
+

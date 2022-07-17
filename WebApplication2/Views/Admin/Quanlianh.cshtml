@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebApplication2.Models.ANHPHU>
+
+@{
+    ViewBag.Title = "Quanlianh";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2> </h2>
+<h3>@ViewBag.Tensp</h3>
+<p>
+    @Html.ActionLink("Thêm ảnh", "Themanh", new{ id = Model.ElementAt(0).MaSP})
+</p>
+<h3>@ViewBag.Tensp</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            Ảnh
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDAnh)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <div>
+                <img src="@Url.Content("~/img/Anhphu/" + item.LinkAnh)" height="400" width="400"/>
+            </div>
+            
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDAnh)
+        </td>
+        <td>
+            @Html.ActionLink("Xóa ảnh", "Xoaanh", new { id=item.IDAnh , maSP = item.MaSP})
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,12 @@
+﻿@using (Html.BeginForm("TimKiemSP", "Admin", FormMethod.Get))
+{
+    @Html.ValidationSummary(true);
+    <div class="form-search">
+        <input type="text" name="searchString" placeholder="Tìm kiếm...." />
+        <button class="search" type="submit">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+    </div>
+}
+
+

@@ -1,0 +1,10 @@
+﻿<a href="@Url.Action("login", "User" , new { })"><i class="fa fa-user" aria-hidden="true"></i><span>@ViewBag.TenDN</span>|</a>
+
+@*Là điều kiện để hiện nút đăng xuất*@
+@if (Session["Taikhoan"] != null)
+{
+    //Hiện nút đăng xuất
+
+    <a href="@Url.Action("logout", "User")" class="dx">Đăng xuất</a>
+
+}

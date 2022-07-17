@@ -1,0 +1,40 @@
+﻿@using PagedList.Mvc;
+@model PagedList.PagedList<WebApplication2.Models.Video>
+
+@{
+    ViewBag.Title = "Video";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        @* danh sach video *@
+        <div class="listVideo" style="margin:20px auto">
+            @foreach (var video in Model)
+            {
+                @* tung video *@
+                <div class="videoItem">
+                    <div class="videoImg">
+                        <img src="@Url.Content("~/img/Anhvideo/" + video.LinkAnh)" alt="Alternate Text" />
+                    </div>
+                    <div class="videoContent">
+                        <a href="@video.Link"><h3>@video.TieuDe</h3></a>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("Video", new { page = page }))
+    </div>
+    <style>
+        .MenuTrang li {
+            display: inline;
+            background-color: aquamarine;
+        }
+    </style>
+</div>
+

@@ -1,0 +1,50 @@
+﻿@using WebApplication2.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<SANPHAM>
+
+@{
+    ViewBag.Title = "TimKiemSP";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container">
+    <h3>@ViewBag.KetQua "@ViewBag.TuKhoa"</h3>
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="product-grid-layout">
+                @foreach (SANPHAM item in Model)
+                {
+                    <div class="product">
+                        @foreach (ANHPHU anhphu in ViewData["anhbia"] as IList<ANHPHU>)
+                        {
+                            if (anhphu.MaSP == item.MaSP)
+                            {
+                                <div class="p-img">
+                                    <img src="@Url.Content("~/img/Anhphu/" + anhphu.LinkAnh)" />
+
+                                </div>
+                            }
+                        }
+                        <a href="@Url.Action("Details", "Index" , new { id = item.MaSP})">@item.TenSP</a>
+                        <h3 class="price">@String.Format("{0:0,0}", item.Giaban) VNĐ</h3>
+                        <a href="@Url.Action("ThemGiohang", "GioHang", new { @iMaSP =  item.MaSP, @strURL = Request.Url.ToString() })" class="buy"> <strong>Thêm vào giỏ hàng</strong> </a>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-lg-3">
+            @Html.Action("Chude", "Index")
+        </div>
+
+    </div>
+    <div class="MenuTrang">
+        @Html.PagedListPager(Model, page => Url.Action("TimKiemSP", new { searchString = @ViewBag.TuKhoa, page = page }))
+    </div>
+    <style>
+        .MenuTrang li {
+            display: inline;
+            background-color: aquamarine;
+        }
+    </style>
+</div>
+

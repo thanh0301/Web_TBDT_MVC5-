@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "signup";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<div class="container">
+    <h2 style="text-align:center">Đăng Ký</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true);
+<div class="form-signup">
+    <div class="tk">
+        <label for="name">Tài khoản:</label>
+        <input type="text" name="name"  id="name" /><br />
+        <p class="error">@ViewData["Loi1"]</p>
+    </div>
+    <div class="tk">
+        <label for="tk">Họ và tên:</label>
+        <input type="text" name="hoten" id="tk" />
+        <p class="error">@ViewData["Loi2"]</p>
+    </div>
+    <div class="mk">
+        <label for="pass">Mật khẩu:</label>
+        <input type="password" name="pass"  id="pass" />
+        <p class="error">@ViewData["Loi3"]</p>
+    </div>
+    <div class="rmk">
+        <label for="rpass">Xác nhận mật khẩu:</label>
+        <input type="password" name="rpass" id="rpass" />
+        <p class="error">@ViewData["Loi4"]</p>
+    </div>
+    <div class="tk">
+        <label for="sdt">SĐT:</label>
+        <input type="text" name="sdt" id="sdt" />
+        <p class="error">@ViewData["Loi5"]</p>
+    </div>
+    <div class="tk">
+        <label for="email">Email:</label>
+        <input type="text" name="email" value="" id="email"/>
+    </div>
+    <div class="tk">
+        <label for="dc">Địa chỉ:</label>
+        <input type="text" name="diachi" value="" id="dc"/>
+    </div>
+    @* nút quay lại trang đăng nhập và nút đăng ký *@
+    <div class="dn_dk">
+    <a style="" href="@Url.Action("login", "User" , new { })">Quay lại</a>
+    <input style="padding:10px 20px;" type="submit" value="Đăng Ký" class="inp" />
+    @*<a href="#">Đăng Ký</a>*@
+
+</div>
+
+</div>
+    }
+
+</div>
+

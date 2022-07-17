@@ -1,0 +1,153 @@
+﻿@using WebApplication2.MultipleModelInOneView;
+@using WebApplication2.Models;
+
+@model Detail_Mota
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="container mt-20">
+    <div class="row">
+        <div class="col-lg-10" style=" margin-top: 20px ">
+            <div class="row">
+                <div class="col-6 col-lg-6">
+                    @* hinh mo ta *@
+                    <div class="detail-imgs">
+                        <div class="row">
+                            @for (int i = 0; i < (ViewData["anhbia"] as IList<ANHPHU>).Count(); i++)
+                            {
+                                if (i == 0)
+                                {
+                                    <div class="col-10 col-lg-12 mb-10">
+                                        <img src="@Url.Content("~/img/Anhphu/" + (ViewData["anhbia"] as IList<ANHPHU>)[i].LinkAnh)" alt="Alternate Text" />
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="d-flex justify-content-center  col-sm-3 col-lg-3 ">
+                                        <img src="@Url.Content("~/img/Anhphu/" + (ViewData["anhbia"] as IList<ANHPHU>)[i].LinkAnh)" alt="Alternate Text" />
+                                    </div>
+                                }
+                            }
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-6">
+                    @* detail content *@
+                    <div class="detail-content">
+                        <h2>@Model.SANPHAM.TenSP</h2>
+                        <div class="road"></div>
+                        <h3 class="price">@String.Format("{0:0,0}", @Model.SANPHAM.Giaban)</h3>
+                        <div class="detail-content-child">
+                            @foreach (String mota in @Model.MotaStrings)
+                            {
+                                if (@Model.MotaStrings.Count() > 1)
+                                {
+                                    <li>@mota</li>
+                                }
+                                else
+                                {
+                                    @Html.Raw(@mota)
+                                }
+
+                            }
+                        </div>
+                        @* hotlline *@
+                        <div class="hotline">
+                            <span>HOTLINE TƯ VẤN SẢN PHẨM <strong>0349.296.461</strong>   ( 9:00 - 21:00 )</span><br />
+                            <strong> CHÍNH SÁCH BÁN HÀNG :</strong>
+                            <ul>
+                                <li>ĐỔI TRẢ MIỄN PHÍ KHI SẢN PHẨM CÓ LỖI DO NHÀ SẢN XUẤT</li>
+                                <li>KHÁCH HÀNG ĐƯỢC KIỂM TRA HÀNG HÓA TRƯỚC KHI THANH TOÁN</li>
+                                <li>NHIỀU ƯU ĐÃI VẬN CHUYỂN KHI ĐẶT HÀNG QUA CÁC SÀN THƯƠNG MẠI ĐIỆN TỬ CỦA LẮC ĐẦU</li>
+
+                            </ul>
+                        </div>
+                        @* button fb,sdt *@
+                        <div class="group-btn">
+                            <button class="btn btn-fb"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</button>
+                            <button class="btn btn-phone"><i class="fa fa-phone" aria-hidden="true"></i> 0908837607</button>
+
+                        </div>
+                        @* cộng trừ sản phẩm *@
+                    <div class="add-sub">
+                        <div class="sub"><i class="fa fa-minus" aria-hidden="true"></i></div>
+                        <div class="num" >0</div>
+                        <div class="add"><i class="fa fa-plus" aria-hidden="true"></i></div>
+                    </div>
+                        @* Buy *@
+                        <a href="@Url.Action("ThemGiohang", "GioHang", new { @iMaSP =  @Model.SANPHAM.MaSP, @strURL = Request.Url.ToString() })" class="buy"> <strong>Thêm vào giỏ hàng</</strong> </a>
+
+                    </div>
+                </div>
+            </div>
+
+            @* danh gia *@
+            <div class="danhgia">
+                <a href="#">Danh gia(0)</a>
+                <h3>Đánh giá</h3>
+                <p>Chưa có đánh giá nào.</p>
+                <div class="rv-form-danhgia">
+                    <h3>Hãy là người đầu tiên nhận xét “@Model.SANPHAM.TenSP” </h3>
+
+                    <div class="form-group">
+                        <div class="frm">
+                            <label for="exampleFormControlTextarea1">Nhận xét của bạn *</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div class="cmt-form">
+                            <div class="cmt-author">
+                                <label for="name">Ten:</label>
+                                <input type="text" name="name" id="name" value="" />
+                            </div>
+                            <div class="cmt-email">
+                                <label for="email">Email:</label>
+                                <input type="email" name="email" id="email" value="" />
+                            </div>
+                        </div>
+                        @* check box *@
+                        <div class="ck">
+                            <input type="checkbox" name="name" value="" id="ck" />
+                            <label for="ck">Lưu tên của tôi, email, và trang web trong trình duyệt này cho lần bình luận kế tiếp của tôi.</label>
+                        </div>
+                        @* btn send *@
+                        <button class="btn-send">Gửi đi</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @* tải sản phẩm từ csdl lên *@
+                @Html.Action("subProduct", "Index", new { id = @Model.SANPHAM.MaLoai, count = 3})
+            </div>
+
+
+        </div>
+        <div class="col-lg-2">
+            @Html.Action("Chude", "Index")
+
+        </div>
+    </div>
+</div>
+@*//xử lý cộng trừ sản phẩm*@
+<script>
+    const add = document.querySelector(".add-sub .add");
+    const sub = document.querySelector(".add-sub .sub");
+    const num = document.querySelector(".add-sub .num");
+    let numCurrent = parseInt(0);
+    add.addEventListener('click', function (e) {
+        numCurrent++;
+        num.textContent = numCurrent;
+    });
+    sub.addEventListener('click', function (e) {
+        if (numCurrent <= 0) return 0;
+        numCurrent--;
+        num.textContent = numCurrent;
+    });
+    if (window.innerWidth > 760) {
+      
+    } else {}
+
+    
+</script>
